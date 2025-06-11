@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- 基础元数据 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国外交辞令严重程度分析系统</title>
+    <!-- 引入CSS样式表 -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 页眉部分 -->
+        <header>
+            <h1>中国外交辞令严重程度分析系统</h1>
+            <p class="subtitle">分析我国在不同国际事件中的外交表态严重程度</p>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <div class="main-content">
+            <!-- 搜索面板 -->
+            <div class="search-panel">
+                <h2>事件分析</h2>
+                <!-- 搜索表单 -->
+                <form action="/analyze" method="GET">
+                    <div class="form-group">
+                        <label for="keyword-input">输入事件关键词</label>
+                        <input type="text" id="keyword-input" name="keyword" placeholder="例如: 俄乌, 巴以, 中美贸易"
+                               value="{{ request.args.get('keyword', '') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>常用关键词</label>
+                        <!-- 关键词标签列表 -->
+                        <div class="keyword-list">
+                            <span class="keyword-tag">俄乌</span>
+                            <span class="keyword-tag">巴以</span>
+                            <span class="keyword-tag">中美</span>
+                            <span class="keyword-tag">贸易</span>
+                            <span class="keyword-tag">关税</span>
+                            <span class="keyword-tag">冲突</span>
+                            <span class="keyword-tag">军事</span>
+                        </div>
+                    </div>
+
+                    <!-- 提交按钮 -->
+                    <button type="submit">分析</button>
+                </form>
+
+                <!-- 错误信息显示区域 -->
+                {% if error %}
+                <div class="error-message" style="color: red; margin-top: 15px;">
+                    {{ error }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- 结果面板 -->
+            <div class="results-panel">
+                <h2>分析结果</h2>
+
+                <!-- 结果显示逻辑 -->
+                {% if show_results and result %}
+                <div class="result-summary">
+                    <h3>"{{ result.event_keyword }}"事件分析结果</h3>
+                    <p>相关外交辞令数量: {{ result.total_statements }}</p>
+                    <p>平均严重程度: {{ "%.1f"|format(result.average_severity) }}</p>
+                    <p>最高严重程度: {{ result.max_severity_score }}
+                        <span class="severity-level level-{{ result.max_severity_level.replace('level', '') }}">
+                            Level {{ result.max_severity_level.replace('level', '') }}
+                        </span>
+                    </p>
+                    <p>最高严重程度辞令示例: {{ result.max_severity_statement }}</p>
+                </div>
+
+                <!-- 图表容器 -->
+                <div class="chart-container">
+                    <div class="fake-chart">
+                        <h4>外交辞令严重程度分布</h4>
+                        <div class="fake-chart-bars">
+                            <!-- Level 1 严重程度柱状图 -->
+                            <div class="fake-bar" style="height: {{ result.level_counts.level1 * 30 }}px; background-color: #2ecc71;">
+                                <div class="fake-bar-value">{{ result.level_counts.level1 }}</div>
+                                <div class="fake-bar-label">Level 1</div>
+                            </div>
+                            <!-- Level 2 严重程度柱状图 -->
+                            <div class="fake-bar" style="height: {{ result.level_counts.level2 * 30 }}px; background-color: #f39c12;">
+                                <div class="fake-bar-value">{{ result.level_counts.level2 }}</div>
+                                <div class="fake-bar-label">Level 2</div>
+                            </div>
+                            <!-- Level 3 严重程度柱状图 -->
+                            <div class="fake-bar" style="height: {{ result.level_counts.level3 * 30 }}px; background-color: #e74c3c;">
+                                <div class="fake-bar-value">{{ result.level_counts.level3 }}</div>
+                                <div class="fake-bar-label">Level 3</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 外交辞令列表 -->
+                <div class="statement-list">
+                    <h3>所有相关外交辞令</h3>
+
+                    <!-- 循环显示每条外交辞令 -->
+                    {% for statement in result.statements_data %}
+                    <div class="statement-item">
+                        <div class="statement-header">
+                            <span class="statement-date">{{ statement.date }}</span>
+                            <span class="severity-level level-{{ statement.severity_level.replace('level', '') }}">
+                                Level {{ statement.severity_level.replace('level', '') }} ({{ statement.severity_score }}分)
+                            </span>
+                        </div>
+                        <div class="statement-content">{{ statement.diplomatic_statement }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {% else %}
+                <!-- 无结果时的占位内容 -->
+                <div id="results-placeholder">
+                    <p style="text-align: center; color: #666; margin-top: 50px;">
+                        请输入关键词并点击"分析"按钮查看结果
+                    </p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer>
+            <p>中国外交辞令严重程度分析系统 &copy; 2025</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,276 @@
+/* 定义CSS变量 */
+:root {
+    --primary-color: #e74c3c;  /* 主色调 - 红色 */
+    --secondary-color: #3498db;  /* 次要色调 - 蓝色 */
+    --light-color: #ecf0f1;  /* 浅色背景 */
+    --dark-color: #2c3e50;  /* 深色文字 */
+    --success-color: #2ecc71;  /* 成功颜色 - 绿色 */
+    --warning-color: #f39c12;  /* 警告颜色 - 橙色 */
+    --danger-color: #e74c3c;  /* 危险颜色 - 红色 */
+}
+
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Microsoft YaHei', Arial, sans-serif;  /* 字体设置 */
+}
+
+/* 页面基础样式 */
+body {
+    background-color: #f5f5f5;  /* 页面背景色 */
+    color: #333;  /* 默认文字颜色 */
+    line-height: 1.6;  /* 行高 */
+}
+
+/* 主容器样式 */
+.container {
+    max-width: 1200px;  /* 最大宽度 */
+    margin: 0 auto;  /* 居中 */
+    padding: 20px;  /* 内边距 */
+}
+
+/* 页眉样式 */
+header {
+    background-color: var(--primary-color);  /* 使用主色调 */
+    color: white;  /* 文字颜色 */
+    padding: 20px 0;  /* 上下内边距 */
+    text-align: center;  /* 文字居中 */
+    margin-bottom: 30px;  /* 底部外边距 */
+    border-radius: 5px;  /* 圆角 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* 阴影效果 */
+}
+
+/* 标题样式 */
+h1 {
+    font-size: 2.2rem;  /* 字体大小 */
+    margin-bottom: 10px;  /* 底部外边距 */
+}
+
+/* 副标题样式 */
+.subtitle {
+    font-size: 1.1rem;  /* 字体大小 */
+    opacity: 0.9;  /* 透明度 */
+}
+
+/* 主要内容区域布局 */
+.main-content {
+    display: flex;  /* 弹性布局 */
+    flex-wrap: wrap;  /* 允许换行 */
+    gap: 20px;  /* 子元素间距 */
+}
+
+/* 搜索面板样式 */
+.search-panel {
+    flex: 1;  /* 弹性比例 */
+    min-width: 300px;  /* 最小宽度 */
+    background: white;  /* 背景色 */
+    padding: 20px;  /* 内边距 */
+    border-radius: 5px;  /* 圆角 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* 阴影效果 */
+}
+
+/* 结果面板样式 */
+.results-panel {
+    flex: 2;  /* 弹性比例 */
+    min-width: 300px;  /* 最小宽度 */
+    background: white;  /* 背景色 */
+    padding: 20px;  /* 内边距 */
+    border-radius: 5px;  /* 圆角 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* 阴影效果 */
+}
+
+/* 表单组样式 */
+.form-group {
+    margin-bottom: 20px;  /* 底部外边距 */
+}
+
+/* 标签样式 */
+label {
+    display: block;  /* 块级元素 */
+    margin-bottom: 8px;  /* 底部外边距 */
+    font-weight: bold;  /* 字体加粗 */
+}
+
+/* 输入框和选择框样式 */
+input[type="text"], select {
+    width: 100%;  /* 宽度100% */
+    padding: 10px;  /* 内边距 */
+    border: 1px solid #ddd;  /* 边框 */
+    border-radius: 4px;  /* 圆角 */
+    font-size: 16px;  /* 字体大小 */
+}
+
+/* 按钮样式 */
+button {
+    background-color: var(--primary-color);  /* 使用主色调 */
+    color: white;  /* 文字颜色 */
+    border: none;  /* 无边框 */
+    padding: 12px 20px;  /* 内边距 */
+    border-radius: 4px;  /* 圆角 */
+    cursor: pointer;  /* 鼠标指针 */
+    font-size: 16px;  /* 字体大小 */
+    transition: background-color 0.3s;  /* 过渡效果 */
+}
+
+/* 按钮悬停效果 */
+button:hover {
+    background-color: #c0392b;  /* 悬停颜色 */
+}
+
+/* 关键词列表样式 */
+.keyword-list {
+    display: flex;  /* 弹性布局 */
+    flex-wrap: wrap;  /* 允许换行 */
+    gap: 10px;  /* 子元素间距 */
+    margin-top: 15px;  /* 顶部外边距 */
+}
+
+/* 关键词标签样式 */
+.keyword-tag {
+    background-color: var(--light-color);  /* 使用浅色背景 */
+    padding: 5px 10px;  /* 内边距 */
+    border-radius: 20px;  /* 圆角 */
+    font-size: 14px;  /* 字体大小 */
+    transition: all 0.3s;  /* 过渡效果 */
+}
+
+/* 关键词标签悬停效果 */
+.keyword-tag:hover {
+    background-color: var(--secondary-color);  /* 使用次要色调 */
+    color: white;  /* 文字颜色 */
+}
+
+/* 结果摘要样式 */
+.result-summary {
+    margin-bottom: 20px;  /* 底部外边距 */
+    padding-bottom: 20px;  /* 底部内边距 */
+    border-bottom: 1px solid #eee;  /* 底部边框 */
+}
+
+/* 严重程度标签样式 */
+.severity-level {
+    display: inline-block;  /* 行内块元素 */
+    padding: 3px 10px;  /* 内边距 */
+    border-radius: 4px;  /* 圆角 */
+    font-weight: bold;  /* 字体加粗 */
+    color: white;  /* 文字颜色 */
+}
+
+/* Level 1 严重程度样式 */
+.level-1 {
+    background-color: var(--success-color);  /* 使用成功颜色 */
+}
+
+/* Level 2 严重程度样式 */
+.level-2 {
+    background-color: var(--warning-color);  /* 使用警告颜色 */
+}
+
+/* Level 3 严重程度样式 */
+.level-3 {
+    background-color: var(--danger-color);  /* 使用危险颜色 */
+}
+
+/* 图表容器样式 */
+.chart-container {
+    height: 300px;  /* 固定高度 */
+    margin: 20px 0;  /* 上下外边距 */
+    background-color: #f9f9f9;  /* 背景色 */
+    display: flex;  /* 弹性布局 */
+    align-items: center;  /* 垂直居中 */
+    justify-content: center;  /* 水平居中 */
+    border-radius: 5px;  /* 圆角 */
+}
+
+/* 模拟图表样式 */
+.fake-chart {
+    text-align: center;  /* 文字居中 */
+    padding: 20px;  /* 内边距 */
+}
+
+/* 模拟图表柱状图容器 */
+.fake-chart-bars {
+    display: flex;  /* 弹性布局 */
+    justify-content: center;  /* 水平居中 */
+    align-items: flex-end;  /* 底部对齐 */
+    height: 200px;  /* 高度 */
+    gap: 30px;  /* 子元素间距 */
+    margin-top: 20px;  /* 顶部外边距 */
+}
+
+/* 模拟图表柱状图样式 */
+.fake-bar {
+    width: 40px;  /* 宽度 */
+    background-color: #3498db;  /* 默认背景色 */
+    position: relative;  /* 相对定位 */
+    border-radius: 4px 4px 0 0;  /* 圆角 */
+}
+
+/* 模拟图表柱状图标签样式 */
+.fake-bar-label {
+    position: absolute;  /* 绝对定位 */
+    bottom: -25px;  /* 位置 */
+    left: 0;  /* 位置 */
+    right: 0;  /* 位置 */
+    text-align: center;  /* 文字居中 */
+}
+
+/* 模拟图表柱状图数值样式 */
+.fake-bar-value {
+    position: absolute;  /* 绝对定位 */
+    top: -25px;  /* 位置 */
+    left: 0;  /* 位置 */
+    right: 0;  /* 位置 */
+    text-align: center;  /* 文字居中 */
+    font-weight: bold;  /* 字体加粗 */
+}
+
+/* 外交辞令列表样式 */
+.statement-list {
+    margin-top: 20px;  /* 顶部外边距 */
+}
+
+/* 单条外交辞令样式 */
+.statement-item {
+    padding: 15px;  /* 内边距 */
+    margin-bottom: 15px;  /* 底部外边距 */
+    border-radius: 5px;  /* 圆角 */
+    background-color: #f9f9f9;  /* 背景色 */
+    border-left: 4px solid var(--secondary-color);  /* 左侧边框 */
+}
+
+/* 外交辞令头部样式 */
+.statement-header {
+    display: flex;  /* 弹性布局 */
+    justify-content: space-between;  /* 两端对齐 */
+    margin-bottom: 10px;  /* 底部外边距 */
+}
+
+/* 外交辞令日期样式 */
+.statement-date {
+    color: #666;  /* 文字颜色 */
+    font-size: 14px;  /* 字体大小 */
+}
+
+/* 外交辞令内容样式 */
+.statement-content {
+    line-height: 1.5;  /* 行高 */
+}
+
+/* 页脚样式 */
+footer {
+    text-align: center;  /* 文字居中 */
+    margin-top: 40px;  /* 顶部外边距 */
+    padding: 20px;  /* 内边距 */
+    color: #666;  /* 文字颜色 */
+    font-size: 14px;  /* 字体大小 */
+}
+
+/* 响应式设计 - 小屏幕适配 */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;  /* 垂直排列 */
+    }
+}
